@@ -156,7 +156,12 @@ public class BeaconManager {
      * The default duration in milliseconds spent not scanning between each Bluetooth scan cycle when no ranging/monitoring clients are in the foreground
      */
     public static final long DEFAULT_BACKGROUND_BETWEEN_SCAN_PERIOD = 5 * 60 * 1000;
+    /**
+     * The default duration in milliseconds of region exit time
+     */
+    public static final long DEFAULT_EXIT_PERIOD = 10000L;
 
+    private static long exitRegionPeriod = DEFAULT_EXIT_PERIOD;
     private long foregroundScanPeriod = DEFAULT_FOREGROUND_SCAN_PERIOD;
     private long foregroundBetweenScanPeriod = DEFAULT_FOREGROUND_BETWEEN_SCAN_PERIOD;
     private long backgroundScanPeriod = DEFAULT_BACKGROUND_SCAN_PERIOD;
@@ -206,6 +211,25 @@ public class BeaconManager {
     public void setBackgroundBetweenScanPeriod(long p) {
         backgroundBetweenScanPeriod = p;
     }
+
+    /**
+     * Set region exit period in milliseconds
+     *
+     * @param regionExitPeriod
+     */
+    public static void setRegionExitPeriod(long regionExitPeriod){
+        exitRegionPeriod = regionExitPeriod;
+    }
+
+    /**
+     * Get region exit milliseconds
+     *
+     * @return exit region period in milliseconds
+     */
+    public static long getRegionExitPeriod(){
+        return exitRegionPeriod;
+    }
+
 
     /**
      * An accessor for the singleton instance of this class.  A context must be provided, but if you need to use it from a non-Activity
